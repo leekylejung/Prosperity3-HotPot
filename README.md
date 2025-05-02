@@ -1,10 +1,10 @@
-#Overview
+# Overview
 
 This repository contains an overview of the performance of our team, Hot Pot, in IMC’s 2025 Prosperity 3 trading challenge. The competition consisted of five rounds, of each which contained an algorithmic and manual trading challenge. We were presented with new tradable goods and historical data to analyze with each new round for the algorithmic challenge. The manual challenge for each round usually consisted of a game theoretic or mathematical problem. The goal of the competition was to amass as many seashells (the in game currency) as possible. Further details may be found in the [competition wiki](https://imc-prosperity.notion.site/Prosperity-3-Wiki-19ee8453a09380529731c4e6fb697ea4). 
 
 Our team consisted of [Kyle Lee](https://www.linkedin.com/in/leekylejung/), [Vincent Yin](https://www.linkedin.com/in/vincent-yin-30510224b/), and Abhinav Ramanathan, and was based in the University of Michigan, Ann Arbor. Overall, we managed to secure a rank of 41st overall out of 12621 participating teams, which far exceeded our expectations. Our relative roles on the team consisted of Kyle and Vincent as lead quantitative researchers and Abhinav as a software developer, although our roles became more hybrid as the competition advanced. We detail our round-by-round strategies below.
 
-#Round 1
+# Round 1
 
 We were introduced to three tradable goods in Round 1: kelp, rainforest resin, and squid ink, all with position limits of 50. The price of rainforest resin seemed to be stable at around 10,000 seashells with significant noise around this price point, so an aggressive arbitrage strategy that traded mispriced orders around 10,000 seemed appropriate. Aside from this, we also market made resin with a 4 seashell wide spread to take on additional volume and cleared our position when it was approaching limits. Kelp was a slightly more volatile good then resin, but a volume weighted moving average based market making strategy at a 2 wide spread seemed to work well. Squid Ink was a much more challenging commodity to trade, as it was extremely volatile, presenting 5 to 10 percent swings multiple times a trading day. Following a hint given by the prosperity team, we were able to deduce that squid ink was short-term mean reverting, and we implemented an algorithm which traded in the opposite direction of large short-term z-score swings.
 
@@ -12,7 +12,7 @@ For manual trading, we were provided with a table of exchange rates for various 
 
 Overall, the conclusion of the first round saw us place at rank 64 at 96825 seashells overall. As expected, we achieved the maximum possible return on the manual trading, and saw high positive results in our mean-reverting squid ink strategy, which was the main differentiator this round.
 
-#Round 2
+# Round 2
 
 We were introduced to five more tradable goods in Round 2: croissants, djembes, jams, picnic basket 1, and picnic basket 2. Picnic basket 1 contained six croissants, three jams, and one djembe, while picnic basket 2 contained four croissants and two jams. Despite much trial, we were unable to discover any profitable strategies for trading croissants, djembes, or jams, but it seemed as if few people on the official Prosperity Discord server were able to do so as well. Thus, we focused our attention on baskets, on which an index pricing strategy seemed most appropriate. We were able to deduce that the difference between the price of baskets and the price of “synthetic baskets”, calculated via the sum of the baskets’ component goods, was highly mean-reverting around 0. Thus, we implemented a strategy similar to the previous round’s squid ink strategy, and implemented a mean-reversion algorithm with our index pricing spreads. 
 
@@ -20,7 +20,7 @@ For this round’s manual trade, we encountered a set of shipping containers, ea
 
 Our ranking after this round fell to 78th, as our manual trade was slightly suboptimal and because we suffered from some overfitting on our baskets strategy. Nevertheless, we ended with 213363 seashells overall.
 
-#Round 3
+# Round 3
 
 We were introduced to a new good, volcanic rock, as well as five vouchers, or European style call options, at different strike prices with the same expiry date. We could not find any profitable strategy involving the underlying volcanic rock, so we turned our attention to finding mispricings in the options. Another hint by the IMC staff suggested that trading the options based on a strategy that incorporated their theoretical Black-Scholes implied volatilities would be the most profitable strategy, so we began exploring in that direction. We ended up deducing that all of the options, and especially the three with the lowest strike prices, mean-reverted to a parabolic IV smile. Thus, we implemented an algorithm that computed each strike’s IV based on its current moneyness (numerically inverting the standard BSM formula), and compared it to our parabolic model’s prediction. We then traded the spread between the two, assuming that the option was overpriced when the calculated IV was much greater than predicted, and vice versa.
 
@@ -28,7 +28,7 @@ For this round’s manual trade, we were tasked with trading with sea turtles to
 
 Overall, we performed well this round, jumping to an overall rank of 56th and 476887 seashells. Our voucher strategy worked as expected and we were amongst the foremost manual traders in the top 100.
 
-#Round 4
+# Round 4
 
 Round 4 saw the introduction of magnificent macarons as well as two observable time series of sunlight factor and sugar price. We were also able to ‘convert’ macarons, which consisted of buying or selling them to Pristine Cuisine, an outside vendor separate from the main exchange. This presented us with an obvious arbitrage opportunity between the two. We also had to factor in shipping costs and import/export tariffs, which all had their own observable time series, as well as a storage cost of 0.1 seashells per macaron per timestamp. We were able to deduce via linear regression between macaron prices and sunlight that the trends in sunlight factor were good signals for taking positions in macarons, and our strategy initially revolved around momentum trading based on sunlight factor. Later on, the Prosperity admins dropped a hint which confirmed our suspicions on this matter. We also implemented arbitrage between Pristine Cuisine and the main island exchange. 
 
@@ -36,7 +36,7 @@ In Round 4, the manual challenge resembled Round 2 but expanded significantly. T
 
 At the conclusion of this round, we encountered an unfortunate blunder: we had accidentally submitted an unpolished production version of our algorithm that had untuned parameters. This, combined with our suboptimal manual trade, caused us to slide all the way down to rank 78 with 603531 seashells. This mishap was extremely regrettable, as we would likely have achieved a top 25 ranking by the final round otherwise.
 
-#Round 5
+# Round 5
 
 Despite our error in the previous round, we were still optimistic about placing well. This round saw the introduction of de-anonymized bot trades in the algorithmic trading time series and no further introduction of new products. This meant that we were able to interpret on some occasion that certain bots trading to certain other bots was a long/short signal. We implemented a grid search algorithm that computed the highest Sharpe ratio signals, and found strong signals for croissants and jams, which, in turn, allowed us to improve our baskets strategy. We also were able to refine our volcanic rock and vouchers strategies from the new provided data, and implemented improvements in macaron arbitrage. This final version of our algorithm was extremely effective in backtesting, and we expected high positive results.
 
