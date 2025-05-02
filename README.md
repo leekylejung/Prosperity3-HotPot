@@ -44,6 +44,6 @@ In the final round of manual trading, we were tasked with making trading decisio
 
 We ended the competition at rank 41 with 901669 total seashells.
 
-#Conclusion
+# Conclusion
 
 By the conclusion of the competition, we ranked 41st overall, 52nd in algorithmic trading, 115st in manual trading, and 12th overall in the United States—a result we are very proud of, especially considering the unexpected challenge we faced in Round 4. Throughout the competition, we employed a wide range of strategic techniques, including market making, mean-reversion, exchange arbitrage, Black-Scholes options pricing, implied volatility analysis, Nash equilibrium simulations, sentiment analysis, and probability distribution modeling. This experience provided invaluable insight into how successful firms leverage a diversity of analytical approaches to make calculated, high-stakes decisions under uncertainty. More importantly, it reinforced the importance of adaptability, rigorous quantitative analysis, critical thinking, and the confidence to trust the thorough groundwork laid by our models.
